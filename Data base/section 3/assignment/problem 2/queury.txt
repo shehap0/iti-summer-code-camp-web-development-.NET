@@ -1,0 +1,59 @@
+USE Company;
+GO
+
+-- 1. All employee data
+SELECT * FROM Employee;
+
+-- 2. First name, last name, salary, department number
+SELECT Fname, Lname, Salary, Dno FROM Employee;
+
+-- 3. Project names, locations, and responsible department
+SELECT p.Pname, p.Plocation, d.Dname
+FROM Project p
+JOIN Departments d ON p.Dnum = d.Dnum;
+
+-- 4. Full name + 10% annual commission
+SELECT Fname + ' ' + Lname AS FullName,
+       (Salary * 12 * 0.10) AS ANNUAL_COMM
+FROM Employee;
+
+-- 5. Id, name of employees earning more than 1000 LE monthly
+SELECT SSN, Fname + ' ' + Lname AS Name
+FROM Employee
+WHERE Salary > 1000;
+
+-- 6. Id, name of employees earning more than 10000 LE annually
+SELECT SSN, Fname + ' ' + Lname AS Name
+FROM Employee
+WHERE Salary * 12 > 10000;
+
+-- 7. Names and salaries of female employees
+SELECT Fname, Lname, Salary
+FROM Employee
+WHERE Sex = 'F';
+
+-- 8. Department id, name managed by manager with id 968574
+SELECT Dnum, Dname
+FROM Departments
+WHERE MGRSSN = 968574;
+
+-- 9. Ids, names, locations of projects controlled by department 10
+SELECT Pnumber, Pname, Plocation
+FROM Project
+WHERE Dnum = 10;
+
+-- 10. Last name starts with 'A' and ends with 'N', OR ends with 'L'
+SELECT *
+FROM Employee
+WHERE (Lname LIKE 'A%N') OR (Lname LIKE '%L');
+
+-- 11. First letter of last name NOT in range A-X
+SELECT *
+FROM Employee
+WHERE Lname NOT LIKE '[A-X]%';
+
+-- 12. First letter of last name is Y or Z
+SELECT *
+FROM Employee
+WHERE Lname LIKE '[Y-Z]%';
+GO

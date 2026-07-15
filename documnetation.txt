@@ -1,0 +1,117 @@
+6 hour a day 
+jul 5(sunday) 11am
+how to draw ER diarams (i have experanice with it since i aready learned it in collage)
+keywords
+	(meta data, primary key, Foreign Key, partial key, ERD model, strong entity vs weak entity, attribute types: (simple, composite, driven, multi-value, complex), relation, degree, unary, binary, ternary, cardinality, one-one, one-many, many-many, participation) and other in the power-point slides
+we had case study to solve together
+we have 3 tasks(third one was bonus) to do in the lab, got them right from the first try(i used draw.io).
+
+day 2
+**Content Summary:** This PPT covers mapping ER diagrams to relational database schemas, including rules for regular/weak entities, keys (primary, foreign, composite), and different relationship types (1:1, 1:N, M:N, unary, n-ary).
+
+**Key Topics:** Steps for creating tables from entities/attributes, handling multivalued/composite/derived attributes, and specific mapping patterns for mandatory/optional participation in relationships. It includes examples and recursive relationships.
+we had assignment we do it in lab to draw the relations
+
+day 3
+our first day using sql server
+**Content Summary:** This section explains SQL Server data types (numeric, decimal, text, date/time) with examples like int, varchar, nvarchar, datetime, etc.
+
+**Key Topics:** DDL commands (CREATE DATABASE/TABLE, ALTER, DROP) and basic DML (INSERT, UPDATE, DELETE). It also covers DQL with SELECT, ORDER BY, DISTINCT, WHERE conditions (IS NULL, IN, BETWEEN, LIKE patterns), and TOP.
+our assignment was to create database from yesterday ER diagram,
+faced some issues since they use gui for windows and im on linux and i didn't want to use sqlcmd from terminal so i installed the service and run it inside container (docker) and used the extension sql server in vscode as gui and it's better than windows.
+
+out task is to create DB from the ER diargam and after creating the tables and adding data(2 row) then turn it into diagrams(visuals)
+second task is to backup sql database(provided by instructor) and solve and write some query
+
+day 4
+more advanced things like:
+**Content Summary:** This PPT introduces SQL/T-SQL fundamentals: history, language categories (DDL, DML, DQL, DCL, TCL), data types, and basic syntax for creating/altering tables.
+
+**Key Topics:** Data manipulation (INSERT, UPDATE, DELETE, TRUNCATE), querying with SELECT, WHERE, LIKE, ORDER BY, joins (INNER, OUTER, CROSS, Self), subqueries, aggregates (COUNT, SUM, etc.), GROUP BY/HAVING, and permissions (GRANT/REVOKE).
+we didn't have lab since we will upload the assignment today midnight is the deadline
+
+the assignment asked us to things like "Display the Department id, name and id and the name of its manager." from the pervious database we backup yesterday.
+
+-------------------------------------
+
+day 1 for (.NET)
+introduction nothing much bites and bytes how computer work, sdlf, ascii table
+data types in c#
+	int 8 or 12byte
+	decimal 16b
+	float 4byte
+	char 1byte
+	string ?byte
+variables(name, value, datatype, address)
+compiler/interpreter
+binary arithmetic operators
+unary operators
+compound operators
+comparison operators
+logical operators
+
+ahhh and they use visual studio(purple one) that is not supported on linux so i will use normal vscode or hop on jetbrains(rider)
+
+day 2
+loops, nested loop, while, do while
+conditions
+switch
+array, 2D array
+internal struct [name]
+	(
+		e1.id = 1
+		e1.name = "ali"
+		e1.age = 22
+		e1.salary = 1234
+		console.writeLine(e1)
+		console.writeLine(e1.id)
+		console.writeLine(e1.name)
+	)
+assignment
+
+day 3
+OOP
+inhertaince
+polymorphism
+overloading
+overriding
+instead of making the employee in struct we will learn to make it in class
+private/public
+	setters,getters
+		properity(it have the same name but the first letter is captile)(its the upgraded version of the setters and getters)
+		we can do some validation in the set
+using return instead of print
+creating swap function
+	use ref instead of value(if we pass values only)
+	if we pass ref like array value === ref
+destructor (useless since c# have garbage  collector)
+
+day 4 (OOR)
+relation between classes
+composition
+aggregation
+association
+inhertaince
+
+association (very loosely coupled)
+	peer to peer
+		teacher  subject
+	temporarily relation
+	represent in code
+	
+aggregation
+	whole vs part
+		student  department
+	temp relation
+
+composition (tightly coupled)
+	complete ownership
+
+
+chaning constuctor (if i have child class that inhert from parent and i don't want it to go to the defualt constructor and want it to go to the paratmerze constructor)
+
+access modiefer (protected) (smart private)
+
+assignment but we didn't have laptop so submit it and instead we will upload it on drive and 12pm is the deadline and the next day is holiday
+
+
