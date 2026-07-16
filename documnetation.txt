@@ -115,3 +115,55 @@ access modiefer (protected) (smart private)
 assignment but we didn't have laptop so submit it and instead we will upload it on drive and 12pm is the deadline and the next day is holiday
 
 
+day 5 
+im very sick and couldn't focus on the lecture
+here the Content: **Detailed Overview:**
+
+This is a C# OOP demonstration project focused on **Inheritance**, **Polymorphism**, **Abstract Classes**, and **Binding** (Early vs Late).
+
+### 1. Core Hierarchy (Geoshape)
+- `Geoshape` is an **abstract class** with `dim1`, `dim2`, and an **abstract** `CArea()` method (must be overridden).
+- It has default and parameterized constructors.
+
+### 2. Derived Shapes
+- **Rectangle**: Inherits directly, `CArea()` = `dim1 * dim2`.
+- **Square**: Inherits from Geoshape (sets both dims equal) or **SquareV2** (inherits from Rectangle — better design).
+- **Triangle**: `CArea()` = `0.5 * dim1 * dim2`.
+- **Circle**: Uses `Math.PI` (or 3.14) for area.
+
+### 3. Binding Examples
+- **Early Binding** (Static/Compile-time): Non-virtual methods — resolved by **reference type**.
+- **Late Binding** (Dynamic/Runtime): Virtual + override — resolved by **actual object type** at runtime.
+
+### 4. Utility Class
+- `SumOfAreasV1`: Rigid (only specific shapes) → violates Open-Closed Principle.
+- `SumOfAreasV2`: Flexible — accepts any `Geoshape[]` and uses polymorphism.
+
+**Main goal of the code:** Show how **polymorphism + abstract classes** allow writing code that works with new shapes without modification.
+
+
+day 6
+**Detailed Overview (CSD06):**
+
+This set demonstrates **C# basics** — value vs reference types, object creation, and properties.
+
+### Key Concepts:
+- **Value Types** (e.g., `int`): Copy by value.
+- **Reference Types** (e.g., `Employee`): Copy by reference (`e1 = e2` points to same object).
+
+### Employee Class:
+- Private fields + public properties (`Id`, `Name`, `Age`, `Salary`).
+- Default & parameterized constructors.
+- Overrides `ToString()` for easy printing.
+
+### Object Creation Techniques:
+1. Constructor.
+2. Object Initializer (Recommended): `new Employee { Id = 1, Name = "Ali" }`.
+3. Named parameters (less common).
+
+### Student Class:
+- Traditional full properties.
+- **Auto-properties** (`public int Age { get; set; }`).
+- Property with validation (Salary).
+
+**Main Goal:** Show proper encapsulation using properties and different ways to instantiate objects in C#.
