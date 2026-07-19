@@ -191,3 +191,27 @@ This project covers **advanced OOP + .NET features**:
 - **Generic Collections**: `List<T>` (dynamic array) and `Dictionary<TKey, TValue>`.
 
 **Main Goal:** Show how to make custom types sortable, cloneable, comparable, and how to use interfaces, generics, and collections for flexible code.
+
+
+day 8
+### Main Components:
+- **Custom Delegates**: `MyDelegate` (bool for Employee), generic versions, and built-in ones.
+- **Employee Repository**: Sample list of employees.
+- **Filtration**: Multiple versions of filtering employees (by salary, dept, name).
+- **NULL**: how to create null value as int so we will use it in the database in the future
+
+### Evolution of Filtering:
+1. Hard-coded methods (`FilterBySalary`, `FilterByDeptId`).
+2. Using `FilterByAny`.
+3. **Delegate-based** (`FilterByDelegate`): Pass any filtering logic dynamically.
+
+### Key Features:
+- **Anonymous Methods** & **Lambda Expressions** (`e => e.Salary > 5000`).
+- **Built-in Delegates**:
+  - `Predicate<T>`: Returns bool.
+  - `Action<T>`: Returns void.
+  - `Func<T, TResult>`: Returns any type.
+
+**Main Goal:** Show how delegates enable flexible, reusable code (e.g., dynamic filtering) without rewriting methods — foundation for LINQ.
+
+holiday
