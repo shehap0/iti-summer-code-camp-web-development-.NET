@@ -18,12 +18,14 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 | Module | Duration |
 |--------|--------|
 | **Database (SQL Server)** — ERD, Mapping, DDL/DML, Joins, Subqueries, Aggregates | 4 days |
-| **C# (.NET)** — Fundamentals, OOP, Inheritance, Polymorphism, Relations | 5 days |
+| **C# (.NET)** — Fundamentals, OOP, Inheritance, Polymorphism, Relations, Delegates, LINQ | 8 days |
+| **Entity Framework** — Code-First, DbContext, Relationships, Loading | 1 day |
 
 ---
 
 ## Database (SQL Server)
-
+> **Note:** Running SQL Server on Linux? Check [installation for linux.md](./installation/SQL%20sever%20installation%20for%20linux.md) — I used Docker/Podman + VS Code SQL Server extension instead of the Windows GUI.
+> **Note:** [windows check](./installation/SQL%20Installation%20Guide(windows).pdf)
 ### Day 1 — ERD Fundamentals
 - Entity types, attributes (simple, composite, derived, multi-value), keys
 - Strong vs weak entities, relationships, cardinality, participation
@@ -46,12 +48,11 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 - GRANT / REVOKE permissions
 - **Assignment:** Complex queries on the company database
 
-> **Note:** Running SQL Server on Linux? Check [installation for linux.md](./installation/SQL%20sever%20installation%20for%20linux.md) — I used Docker/Podman + VS Code SQL Server extension instead of the Windows GUI.
-> **Note:** [windows check](./installation/SQL%20Installation%20Guide(windows).pdf)
 
 ---
 
 ## C# (.NET)
+> **Note:** Running dotnet on Linux? Check [installation for linux.md](./installation/Dotnet%20installation.md) 
 
 ### Day 1 — Fundamentals
 - Bits, bytes, ASCII, SDLC
@@ -90,6 +91,62 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 - **`sealed` keyword** — prevents further inheritance
 - **Lab:** Shape area calculator with static vs dynamic binding demo
 
-> **Note:** Running dotnet on Linux? Check [installation for linux.md](./installation/Dotnet%20installation.md) 
+### Day 6 — Classes, Properties & Object Initializers
+- Value types vs reference types (copy by value vs copy by reference)
+- Encapsulation with private fields + public properties
+- **Object Initializer** syntax — `new Employee { Id = 1, Name = "Ali" }` (recommended)
+- Auto-properties (`public int Age { get; set; }`)
+- Property with validation (e.g., Salary range check)
+- Overriding `ToString()` for easy printing
+- **Lab:** Employee + Student class with various property styles
+
+### Day 7 — Interfaces, Generics & Collections
+- **Interfaces** — contracts with method signatures, multiple interface implementation
+- **IComparable\<T\>** — custom sorting via `CompareTo()` (sort by Age, Name, HireDate)
+- **ICloneable** — deep copy vs shallow copy (rebuilding nested `HireDate`)
+- **Object equality** — `==` (identity) vs `.Equals()` (content) vs `ReferenceEquals()`
+- **Singleton pattern** — private ctor + private static field + public static factory
+- **Generic methods** — `Swap<T>()` passing by value (ref needed for real swap)
+- **List\<T\>** — dynamic array, Capacity doubles on overflow, Count vs Capacity
+- **Dictionary\<TKey, TValue\>** — key-value lookup, `.Add()` vs indexer semantics
+- **`var` keyword** — implicit typing, must be initialized immediately
+- **Lab:** Employee array sorted by hire month, Singleton demo, Point equality
+
+### Day 8 — Delegates, Lambdas & Filtering
+- **Custom delegates** — `MyDelegate` that returns bool for filtering
+- **Evolution of filtering:** hard-coded methods → `FilterByAny` → delegate-based
+- **Anonymous methods** & **Lambda expressions** — `e => e.Salary > 5000`
+- **Built-in delegates** — `Predicate<T>`, `Action<T>`, `Func<T, TResult>`
+- **Nullable value types** — `int?` for database compatibility
+- **Lab:** Employee filtering pipeline using delegates and lambdas
+
+---
+
+## LINQ
+
+- **Prerequisites:** `var`, extension methods, anonymous types
+- **Fluent syntax** — static methods on `Enumerable` (passing delegates like Predicate)
+- **Extension methods** — most common LINQ style
+- **Query syntax** — SQL-like expressions (from → where → select)
+- **Transformation** — `Select()` to project data
+- **Ordering** — `OrderBy()`, `OrderByDescending()`, `ThenBy()`
+- **Aggregates** — `Count()`, `Sum()`, `Average()`, `Min()`, `Max()`
+- **Set operators** — `Distinct()`, `Union()`, `Intersect()`, `Except()`, `Concat()`
+- **Joins** — joining sequences with LINQ
+- **Hybrid syntax** — mixing fluent and query styles
+- **Lab:** LINQ queries on Student/Subject collections
+
+## Entity Framework (Code-First)
+> **Note:** some issue with fix since i used linux that you might face. Check [Entity Framework linux issues.md](./installation/Entity%20Framework%20linux%20issues.md) 
+
+- **Approach:** Code-First only (Model First = dead, Database First = rare)
+- **Relationships:** FK property + virtual navigation property + `virtual ICollection<T>`
+- **Lazy Loading** — virtual keyword defers loading until accessed
+- **Eager Loading** — `.Include()` to load related data upfront
+- **Explicit Loading** — runtime load into memory in one request
+- **DbContext** — `MyContext : DbContext` with connection string and `DbSet<T>` properties
+- **Packages:** `Microsoft.EntityFrameworkCore.SqlServer` + `Microsoft.EntityFrameworkCore.Design` (via NuGet or `dotnet add package`)
+- **Lab:** Build data models with relationships and query via LINQ to EF
+
 ---
 
