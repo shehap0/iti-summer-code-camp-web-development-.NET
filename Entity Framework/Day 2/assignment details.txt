@@ -1,0 +1,2 @@
+task 1 is to transform these 2 ERD to code first
+task 2 is to inverse the database(any database) into code
