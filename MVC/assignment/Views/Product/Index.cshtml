@@ -1,0 +1,25 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Count</th>
+		</tr>
+	</thead>
+	<tbody>
+		@{
+			foreach (var product in Model)
+			{
+				<tr>
+					<td>@product.Id</td>
+					<td>@product.Title</td>
+					<td>@product.Description</td>
+					<td>@product.Price</td>
+					<td>@product.Count</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>

@@ -18,8 +18,9 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 | Module | Duration |
 |--------|--------|
 | **Database (SQL Server)** — ERD, Mapping, DDL/DML, Joins, Subqueries, Aggregates | 4 days |
-| **C# (.NET)** — Fundamentals, OOP, Inheritance, Polymorphism, Relations, Delegates, LINQ | 8 days |
+| **C# (.NET)** — Fundamentals, OOP, Inheritance, Polymorphism, Relations, Delegates, LINQ | 9 days |
 | **Entity Framework** — Code-First, DbContext, Relationships, Loading | 1 day |
+| **MVC** — xxxx | x day |
 
 ---
 
