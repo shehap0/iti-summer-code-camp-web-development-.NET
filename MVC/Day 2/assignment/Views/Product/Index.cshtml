@@ -1,0 +1,48 @@
+@model List<Product>
+
+@{
+	var pt = ViewData[Constants.PageTitle];
+	var numb = ViewData[Constants.NumberOfVisits];
+}
+
+<h1>@pt</h1>
+<h5>Number Of Daily Visit: @numb</h5>
+
+<a href="~/Product/Create" class="btn btn-success">Add New Product</a>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Count</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var product in Model){
+			<tr>
+				<td>@product.Id</td>
+				<td>@product.Title</td>
+				<td>@product.Description</td>
+				<td>@product.Price</td>
+				<td>@product.Count</td>
+				<td>
+					<a class="btn btn-primary" href="~/Product/Details/@product.Id">Details</a>
+					<a class="btn btn-secondary" href="~/Product/Edit/@product.Id">Edit</a>
+					<a class="btn btn-outline-danger" href="~/Product/Delete/@product.Id" onclick="return confirmDelete()">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@section Scripts {
+	<script>
+		function confirmDelete() {
+			return confirm("Do you want to Delete this Product?");
+		}
+	</script>
+}

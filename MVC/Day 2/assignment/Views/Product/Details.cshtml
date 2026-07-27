@@ -1,0 +1,27 @@
+@model Product
+
+<h1>Product Details</h1>
+
+<br></br>
+<hr></hr>
+<br></br>
+
+<h3><strong>Id:</strong> @Model.Id</h3>
+<h3><strong>Title:</strong> @Model.Title</h3>
+<h3><strong>Description:</strong> @Model.Description</h3>
+<h3><strong>Price:</strong> @Model.Price</h3>
+<h3><strong>Count:</strong> @Model.Count</h3>
+
+<br></br>
+
+<a class="btn btn-secondary" href="~/Product/Index">Back</a>
+<a class="btn btn-primary" href="~/Product/Edit/@Model.Id">Edit</a>
+<a class="btn btn-outline-danger" href="~/Product/Delete/@Model.Id" onclick="return confirmDelete()">Delete</a>
+
+@section Scripts {
+	<script>
+		function confirmDelete() {
+			return confirm("Do you want to Delete this Product?");
+		}
+	</script>
+}

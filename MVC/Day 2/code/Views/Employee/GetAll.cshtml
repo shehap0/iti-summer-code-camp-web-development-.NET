@@ -1,0 +1,41 @@
+﻿@model List<Employee> //StronglyType
+
+@{
+	var pt = ViewData[Constants.PageTitle];
+	var numb = ViewData[Constants.NumberOfVisits];
+}
+
+<h1>@pt</h1>
+<h5>Number Of Daily Visit: @numb</h5>
+@* <h2>@(ViewBag.Hamada as string)</h2> *@
+
+<a href="~/Employee/Create" class="btn btn-success">Create New Employee</a> 
+
+@*~/Employee/Create => ~ Means Localhost:PortNumber*@
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Salary</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var emp in Model){ //LosslyType
+			<tr>
+				<td>@emp.Id</td>
+				<td>@emp.Name</td>
+				<td>@emp.Age</td>
+				<td>@emp.Salary</td>
+				<td>
+					<a class="btn btn-primary" href="~/Employee/GetById/@emp.Id">Details</a>
+					<a class="btn btn-secondary" href="~/Employee/Edit/@emp.Id">Edit</a>
+					<a class="btn btn-outline-danger" href="~/Employee/Delete/@emp.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
