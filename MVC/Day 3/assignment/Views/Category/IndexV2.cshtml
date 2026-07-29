@@ -1,0 +1,29 @@
+@model IEnumerable<CategoryReadVM>
+
+<h2 class="text-center text-success">All Categories</h2>
+
+<a href="~/Category/CreateV2" class="btn btn-success">Create a New Category</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <th scope="row">@category.Id</th>
+                <td>@category.Name</td>
+                <td>
+                    <a href="~/Category/DetailsV2/@category.Id" class="btn btn-primary">Details</a>
+                    <a href="~/Category/EditV2/@category.Id" class="btn btn-secondary">Edit</a>
+                    <a href="~/Category/Delete/@category.Id" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+@model Product
+<h2 class="text-success text-center">Product Details</h2>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Id</h6>
+        <p class="card-text">@Model.Description</p>
+        <p class="card-text">Price: @Model.Price - Count: @Model.Count</p>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Category!.Name</h6>
+    </div>
+</div>

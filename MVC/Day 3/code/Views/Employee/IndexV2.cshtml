@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EmployeeReadVM>
+
+<h2 class="text-center text-success">All Employees</h2>
+
+<a href="~/Employee/CreateV2" class="btn btn-success">Create a New Employee</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Department</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <th scope="row">@emp.Id</th>
+                <td>@emp.Name</td>
+                <td>@emp.Age</td>
+                <td>@emp.Salary</td>
+                <td>@emp.DepartmentName</td>
+                <td>
+                    <a href="~/Employee/DetailsV2/@emp.Id" class="btn btn-primary">Details</a>
+                    <a href="~/Employee/EditV2/@emp.Id" class="btn btn-secondary">Edit</a>
+                    <a href="~/Employee/Delete/@emp.Id" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
