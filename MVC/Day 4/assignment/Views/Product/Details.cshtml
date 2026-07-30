@@ -1,0 +1,14 @@
+@model ProductReadVM
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Product Details</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Title: @Model.Title</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Description: @Model.Description</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Price: @Model.Price</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Count: @Model.Count</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Expiry Date: @Model.ExpiryDate</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Category: @Model.Category</h6>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-outline-secondary">Back</a>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+﻿@model EmployeeCreateVM
+
+<div class="d-flex justify-content-center">
+    <h1 class="text-success">Create Employee</h1>
+</div>
+
+<br />
+<hr />
+<br />
+
+@* Tag Helper *@
+
+<form asp-action="Create" asp-controller="Employee" method="post">
+    @* <div asp-validation-summary="All" class="text-danger"></div> *@
+    <div class="mb-3 form-group">
+        @* <label for="Name" class="form-label">Name</label> *@
+        <label asp-for="Name"></label>
+        @* <input type="text" class="form-control" id="Name" name="Name" required /> *@
+        <input type="text" asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Age"></label>
+        <input type="number" asp-for="Age" class="form-control">
+        <span asp-validation-for="Age" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Salary"></label>
+        <input type="number" asp-for="Salary" class="form-control">
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Address"></label>
+        <input type="text" asp-for="Address" class="form-control">
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Email"></label>
+        <input type="text" asp-for="Email" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Password"></label>
+        <input type="text" asp-for="Password" class="form-control">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input type="text" asp-for="ConfirmPassword" class="form-control">
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="DOB"></label>
+        <input type="text" asp-for="DOB" class="form-control">
+        <span asp-validation-for="DOB" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="DepartmentId"></label>
+        <select class="form-select" asp-for="DepartmentId" asp-items="Model.Departments!">
+        </select>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+        <input type="submit" class="btn btn-success" value="Create Employee" />
+        <a asp-action="Index" asp-controller="Employee" class="btn btn-secondary">Cancel</a>
+    </div>
+
+</form>
+
+@* <form action="~/Employee/Create" method="post">
+
+    <div class="mb-3 form-group">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+
+    <div class="mb-3 form-group">
+        <label for="Age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="Age" name="Age" required />
+    </div>
+
+    <div class="mb-3 form-group">
+        <label for="Salary" class="form-label">Salary</label>
+        <input type="number" class="form-control" id="Salary" name="Salary" required />
+    </div>
+
+    <div class="mb-3 form-group">
+        <label for="DepartmentId" class="form-label">Department</label>
+        <select class="form-select" id="DepartmentId" name="DepartmentId" required>
+            @foreach (var department in Model.Departments!)
+            {
+                <option value="@department.Value">@department.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+        <input type="submit" class="btn btn-success" value="Create Employee" />
+        <a href="~/Employee/Index" class="btn btn-secondary">Cancel</a>
+    </div>
+
+</form> *@
