@@ -1,0 +1,36 @@
+@model List<CategoryReadVM>
+
+<div class="d-flex justify-content-center">
+    <h2 class="text-success">Categories Portal</h2>
+</div>
+
+<br />
+<hr />
+<br />
+
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <th scope="row">@category.Id</th>
+                <th scope="row">@category.Name</th>
+                <th scope="row">
+                    @Html.ActionLink("Details", "Details", "Category", new { id = category.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", "Category", new { id = category.Id }, new { @class = "btn btn-outline-secondary" })
+                    @Html.ActionLink("Delete", "Delete", "Category", new { id = category.Id }, new { @class = "btn btn-outline-danger" })
+                </th>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        @Html.ActionLink("Create New Category", "Create", "Category", null, new { @class = "btn btn-success" })
+    </tfoot>
+</table>

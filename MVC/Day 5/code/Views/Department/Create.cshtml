@@ -1,0 +1,88 @@
+﻿@model DepartmentCreateVM
+
+@* <div class="d-flex justify-content-center">
+    <h1 class="text-success">Create Department</h1>
+</div>
+
+<br />
+<hr />
+<br />
+
+<form action="~/Department/Create" method="post">
+
+    <div class="mb-3 form-group">
+        <label for="Id" class="form-label">Id</label>
+        <input type="number" class="form-control" id="Id" name="Id" readonly/>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+        <input type="submit" class="btn btn-success" value="Create Employee" />
+        <a href="~/Department/Index" class="btn btn-secondary">Cancel</a>
+    </div>
+
+</form> *@
+
+@* HTML Helper *@
+
+<div class="d-flex justify-content-center">
+    <h1 class="text-success">Create Department</h1>
+</div>
+
+<br />
+<hr />
+<br />
+
+
+@using (Html.BeginForm("Create","Department", FormMethod.Post)){
+    <div class="mb-3 form-group">
+        @* <label for="Id" class="form-label">Id</label> *@
+        @Html.Label("Id")
+        @* <input type="number" class="form-control" id="Id" name="Id" readonly /> *@
+        @Html.EditorFor(d => d.Id, new { @class = "form-control" })
+		@Html.ValidationMessageFor(d => d.Id, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3 form-group">
+        @* @Html.Label("Name") *@
+        @Html.LabelFor(d => d.Name)
+        @* <label for="Name" class="form-label">Name</label> *@
+        @* Loosly Typed *@
+        @* @Html.TextBox("Name", null , new { @class = "form-control" }) *@
+        @* Strongly Typed *@
+        @Html.TextBoxFor(d => d.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(d => d.Name, "", new { @class = "text-danger" })
+        @* <input type="text" class="form-control" id="Name" name="Name" required /> *@
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+        <input type="submit" class="btn btn-success" value="Create Employee" />
+        @* <a href="~/Department/Index" class="btn btn-secondary">Cancel</a> *@
+        @Html.ActionLink("Cancel", "Index", "Department", null, new { @class = "btn btn-secondary" })
+    </div>
+    }
+
+@* <form action="~/Department/Create" method="post">
+
+    <div class="mb-3 form-group">
+        @Html.Label("Id")
+        @Html.EditorFor(d => d.Id, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3 form-group">
+        @Html.LabelFor(d => d.Name)
+
+        @Html.TextBoxFor(d => d.Name, new { @class = "form-control" })
+
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+        <input type="submit" class="btn btn-success" value="Create Employee" />
+        @Html.ActionLink("Cancel", "Index", "Department", null, new { @class = "btn btn-secondary" })
+    </div>
+
+</form> *@
