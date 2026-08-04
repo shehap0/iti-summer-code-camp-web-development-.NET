@@ -1,6 +1,6 @@
 # ITI Summer Code Camp 2026 – Web development using .NET (suez canal branch, Egypt)
 
-This repository documents my journey through the **ITI Summer Code Camp 2026** in suez canal, Egypt(online). The track covers **C# (.NET)** and **Database (SQL Server)** — with my notes, assignments, lab solutions, and everything I'm learning along the way.
+This repository documents my journey through the **ITI Summer Code Camp 2026** in suez canal, Egypt(online). The track covers **C# (.NET)**, **Database (SQL Server)** **Entity Framework** and **MVC** — with my notes, assignments, lab solutions, and everything I'm learning along the way.
 
 ![ITI Summer Code Camp](./iti%20cover.jpg)
 
@@ -11,7 +11,6 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 | **Location** | Information Technology Institute (ITI), suez canal branch, Egypt |
 | **Duration** | July 2026 |
 | **total training hours** | +144 |
-| **Schedule** | 6 hours/day |
 
 ## Curriculum
 
