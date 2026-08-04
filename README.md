@@ -19,8 +19,8 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 |--------|--------|
 | **Database (SQL Server)** — ERD, Mapping, DDL/DML, Joins, Subqueries, Aggregates | 4 days |
 | **C# (.NET)** — Fundamentals, OOP, Inheritance, Polymorphism, Relations, Delegates, LINQ | 9 days |
-| **Entity Framework** — Code-First, DbContext, Relationships, Loading | 1 day |
-| **MVC** — xxxx | x day |
+| **Entity Framework** — Code-First, DbContext, Relationships, Loading, Migrations, Database-First | 2 days |
+| **MVC** — Controllers, Views, ViewModels, Validation, Tag Helpers, EF Core Integration, File Upload | 5 days |
 
 ---
 
@@ -140,6 +140,8 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 ## Entity Framework (Code-First)
 > **Note:** some issue with fix since i used linux that you might face. Check [Entity Framework linux issues.md](./installation/Entity%20Framework%20linux%20issues.md) 
 
+### Day 1 — Code-First, Lazy Loading, Eager Loading
+
 - **Approach:** Code-First only (Model First = dead, Database First = rare)
 - **Relationships:** FK property + virtual navigation property + `virtual ICollection<T>`
 - **Lazy Loading** — virtual keyword defers loading until accessed
@@ -148,6 +150,57 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 - **DbContext** — `MyContext : DbContext` with connection string and `DbSet<T>` properties
 - **Packages:** `Microsoft.EntityFrameworkCore.SqlServer` + `Microsoft.EntityFrameworkCore.Design` (via NuGet or `dotnet add package`)
 - **Lab:** Build data models with relationships and query via LINQ to EF
+
+### Day 2 — Relationships, Migrations, Annotations & Database-First
+- **Ways to model entities** — conventions, data annotations, Fluent API, external configuration classes (`IEntityTypeConfiguration<T>`)
+- **Data Annotations showcase** — `[Table]`, `[Key]`, `[Required]`, `[StringLength]`, `[NotMapped]`, `[ForeignKey]`, `[InverseProperty]`, `[PrimaryKey]`, `[DatabaseGenerated]`
+- **Migrations strategy** — `dotnet ef migrations add` evolving the schema without dropping data (6 versioned migrations: O2M → M2M → explicit composite keys → 1:1)
+- **Relationships in depth** — one-to-many, many-to-many (auto & explicit join tables), one-to-one, self-referencing (e.g., Employee → Manager)
+- **Database-First** — reverse-engineer an existing DB with `dotnet ef dbcontext scaffold` (see [database first.md](./Entity%20Framework/Day%202/database%20first.md))
+- **Labs:** Transform 2 ERDs to code-first (Music, Real-Estate) + scaffold the Company database
+
+
+## MVC (ASP.NET Core)
+
+### Day 1 — MVC Basics
+- Request pipeline: `AddControllersWithViews()`, `UseRouting()`, `MapDefaultControllerRoute()`, default route `{controller=Home}/{action=Index}/{id?}`
+- Controllers, actions, and return types (`ContentResult`, `JsonResult`, `ViewResult`, `IActionResult`)
+- Simple models passed from controllers to views (static in-memory lists)
+- Scaffolding: `_Layout.cshtml` (Bootstrap), `_ViewImports.cshtml` (tag helpers), `_ViewStart.cshtml`
+
+### Day 2 — ViewData/ViewBag, ViewModels & CRUD
+- Passing data via **ViewData** / **ViewBag** + a `Constants.cs` helper for magic-string keys
+- **ViewModels** to decouple the entity shape from what the view renders
+- Full **CRUD** lifecycle: `GetAll`, `GetById`, Create/Edit/Delete with `RedirectToAction`
+- Manual model binding via `name="..."` form attributes (pre–tag helper stage)
+- Strongly typed views with `@model`
+
+### Day 3 — First EF Core Integration
+- Real database via `MyDbContext` with `OnConfiguring` + seeding
+- Fluent API external configuration (`IEntityTypeConfiguration<T>`) and a real FK relationship + migration
+- **V1 vs V2 refactor** — raw entities + `ViewBag` dropdown vs ViewModels + `SelectListItem`
+- `Helper.GetDeptsDropDown()` to build and reuse dropdown items
+
+### Day 4 — Validation & Tag Helpers
+- **DataAnnotations validation** — `[Required]`, `[Range]`, `[EmailAddress]`, `[Compare]`, `[DisplayName]`
+- **Custom validation attributes** — `MinAgeAttribute` (DateOnly DOB), `NotFutureDateAttribute`
+- Standard CRUD pattern: `[HttpGet]`/`[HttpPost]` pairs + `ModelState.IsValid` + `[ValidateAntiForgeryToken]`
+- **Tag Helpers** — `asp-action`, `asp-controller`, `asp-for`, `asp-validation-for` vs legacy HTML Helpers
+
+### Day 5 — File Upload, Layouts, Partials & Routing
+- **File upload** — `IFormFile`, `enctype="multipart/form-data"`, saving image URLs to the DB
+- **Layouts & sections** — `RenderSection` / `RenderSectionAsync("Scripts")`, switching layouts per-view/area via `_ViewStart`
+- **Partial views** — `<partial>` tag helper, `@Html.Partial`, `RenderPartialAsync`, reusable detail partials
+- **Routing constraints** — `[Route]`, `[HttpGet("{id:int}")]`, `{name:alpha}` overloads
+
+### Project — "Shoply" e-commerce app ([MVC/project](./MVC/project))
+> Capstone applying every MVC + EF Core concept: storefront + admin portal, net10.0, EF Core with DI (`AddDbContext` + `appsettings.json`), `Database.EnsureCreated()` at startup.
+
+- **Storefront** — `HomeController`: featured products, category filtering + search, product details with related items; dark/light theme toggle persisted in `localStorage`
+- **Admin portal** — `ProductController` / `CategoryController` async CRUD with image upload/removal, `TempData` flash messages, duplicate-name checks, delete blocking while related data exists
+- **Services** — `ImageHandler` validating extensions (.jpg/.jpeg/.png/.webp/.gif) and 5 MB size cap, saving to `wwwroot/images/products/`
+- **ViewModels** — validated forms with `IFormFile`, `SelectList` dropdowns, details/index VMs
+- **Layouts & partials** — `_Layout` (storefront) vs `_PortalLayout` (admin sidebar), `_ProductCard`, `_ProductForm`, `_FlashMessage`, `_ThemeToggle`, `asp-append-version` cache busting
 
 ---
 

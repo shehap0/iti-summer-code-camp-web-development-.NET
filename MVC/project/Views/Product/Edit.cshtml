@@ -1,0 +1,23 @@
+@model ProductFormViewModel
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="portal-toolbar">
+    <a class="btn btn-ghost btn-sm" asp-controller="Product" asp-action="Index">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to products
+    </a>
+</div>
+
+<form class="form-card reveal" method="post" asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" enctype="multipart/form-data">
+    <h2 class="form-title">Edit product</h2>
+    <p class="muted">Update the details for <strong>@Model.Title</strong>. Upload a new image to replace the current one.</p>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ExistingImagePath" />
+    <partial name="_ProductForm" model="Model" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

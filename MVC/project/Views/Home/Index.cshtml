@@ -1,0 +1,132 @@
+@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+    <div class="container hero-inner">
+        <div class="hero-copy">
+            <span class="hero-eyebrow">New season, new arrivals</span>
+            <h1 class="hero-title">
+                Everything you love,
+                <span class="gradient-text">one cart away.</span>
+            </h1>
+            <p class="hero-sub">
+                Discover a curated catalog of electronics, fashion, home goods and more — updated daily with fresh stock.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-primary btn-lg" asp-controller="Home" asp-action="Products">Shop the collection</a>
+                <a class="btn btn-glass btn-lg" asp-controller="Home" asp-action="Index" asp-fragment="categories">Browse categories</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <strong>@(Model.FeaturedProducts.Count + 120)</strong>
+                    <span>Products</span>
+                </div>
+                <div class="stat">
+                    <strong>@Model.Categories.Count</strong>
+                    <span>Categories</span>
+                </div>
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <span>Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-float-card reveal">
+                <div class="float-card-top">
+                    <span class="float-dot"></span><span class="float-dot"></span><span class="float-dot"></span>
+                </div>
+                <div class="float-card-row">
+                    <div class="float-card-line w-70"></div>
+                    <div class="float-card-line w-40"></div>
+                </div>
+                <div class="float-card-price">$249.99</div>
+                <div class="float-card-cta"></div>
+            </div>
+            <div class="hero-ring" aria-hidden="true"></div>
+            <div class="hero-tag hero-tag-1 reveal">Free shipping</div>
+            <div class="hero-tag hero-tag-2 reveal">30-day returns</div>
+        </div>
+    </div>
+    <a class="hero-scroll" href="#categories" aria-label="Scroll down">
+        <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+    </a>
+</section>
+
+<section class="section" id="categories">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="section-eyebrow">Collections</span>
+                <h2 class="section-title">Shop by category</h2>
+            </div>
+            <a class="btn btn-ghost" asp-controller="Home" asp-action="Products">View all products</a>
+        </div>
+
+        @if (Model.Categories.Any())
+        {
+            <div class="category-grid">
+                @foreach (var category in Model.Categories)
+                {
+                    <a class="category-card reveal" asp-controller="Home" asp-action="Products" asp-route-category="@category.Name">
+                        <span class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <h3 class="category-name">@category.Name</h3>
+                            <p class="category-count">@category.ProductCount @(category.ProductCount == 1 ? "product" : "products")</p>
+                        </div>
+                        <span class="category-arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">No categories yet.</div>
+        }
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="section-eyebrow">Hand-picked</span>
+                <h2 class="section-title">Featured products</h2>
+            </div>
+            <a class="btn btn-ghost" asp-controller="Home" asp-action="Products">Browse everything</a>
+        </div>
+
+        @if (Model.FeaturedProducts.Any())
+        {
+            <div class="product-grid">
+                @foreach (var product in Model.FeaturedProducts)
+                {
+                    <partial name="_ProductCard" model="product" />
+                }
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">No products yet — check back soon!</div>
+        }
+    </div>
+</section>
+
+<section class="banner">
+    <div class="container banner-inner">
+        <div>
+            <span class="section-eyebrow banner-eyebrow">Bulk &amp; wholesale</span>
+            <h2 class="banner-title">Manage your catalog with ease</h2>
+            <p class="banner-text">Add products, upload images and organize categories from the dedicated admin portal.</p>
+        </div>
+        <a class="btn btn-light btn-lg" asp-controller="Product" asp-action="Index">Open Admin Portal</a>
+    </div>
+</section>

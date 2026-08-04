@@ -1,0 +1,58 @@
+@model ProductListViewModel
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<section class="page-hero">
+    <div class="container">
+        <span class="section-eyebrow">Catalog</span>
+        <h1 class="page-title">All products</h1>
+        <p class="page-sub">Browse every item in the store. Filter by category or search for something specific.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <form class="filter-bar" method="get" asp-controller="Home" asp-action="Products">
+            <div class="filter-field">
+                <label asp-for="SearchTerm" class="visually-hidden">Search</label>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input asp-for="SearchTerm" placeholder="Search products..." />
+            </div>
+            <div class="filter-field filter-select">
+                <label asp-for="SelectedCategory" class="visually-hidden">Category</label>
+                <select asp-for="SelectedCategory">
+                    <option value="">All categories</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Apply filters</button>
+            @if (!string.IsNullOrEmpty(Model.SelectedCategory) || !string.IsNullOrEmpty(Model.SearchTerm))
+            {
+                <a class="btn btn-ghost" asp-controller="Home" asp-action="Products">Clear</a>
+            }
+        </form>
+
+        @if (Model.Products.Any())
+        {
+            <p class="result-count">Showing @Model.Products.Count @(Model.Products.Count == 1 ? "product" : "products")</p>
+            <div class="product-grid">
+                @foreach (var product in Model.Products)
+                {
+                    <partial name="_ProductCard" model="product" />
+                }
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <div class="empty-icon">&#128269;</div>
+                <h3>No products found</h3>
+                <p>Try adjusting your search or category filter.</p>
+            </div>
+        }
+    </div>
+</section>

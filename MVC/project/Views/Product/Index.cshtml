@@ -1,0 +1,108 @@
+@model ProductListViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="portal-toolbar">
+    <form class="portal-search" method="get" asp-controller="Product" asp-action="Index">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input asp-for="SearchTerm" placeholder="Search by title or category..." />
+        <button class="btn btn-ghost btn-sm" type="submit">Search</button>
+        @if (!string.IsNullOrEmpty(Model.SearchTerm))
+        {
+            <a class="btn btn-ghost btn-sm" asp-controller="Product" asp-action="Index">Clear</a>
+        }
+    </form>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Create">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Product
+    </a>
+</div>
+
+@if (Model.Products.Any())
+{
+    <div class="table-card">
+        <div class="table-scroll">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Expiry</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr class="reveal">
+                            <td>
+                                <div class="table-product">
+                                    @if (!string.IsNullOrEmpty(product.ImagePath))
+                                    {
+                                        <img class="table-thumb" src="@product.ImagePath" asp-append-version="true" alt="@product.Title" />
+                                    }
+                                    else
+                                    {
+                                        <div class="table-thumb table-thumb-empty">?</div>
+                                    }
+                                    <div>
+                                        <strong>@product.Title</strong>
+                                        <small class="muted">@product.Description</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="chip">@product.CategoryName</span></td>
+                            <td class="nowrap">@product.Price.ToString("C")</td>
+                            <td>
+                                @if (product.Count <= 0)
+                                {
+                                    <span class="stock-badge stock-out">Out</span>
+                                }
+                                else if (product.Count <= 5)
+                                {
+                                    <span class="stock-badge stock-low">@product.Count left</span>
+                                }
+                                else
+                                {
+                                    <span class="stock-badge stock-in">@product.Count</span>
+                                }
+                            </td>
+                            <td class="nowrap">
+                                @product.ExpiryDate.ToString("MMM dd, yyyy")
+                                @if (product.IsExpired)
+                                {
+                                    <span class="stock-badge stock-out">Expired</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="row-actions">
+                                    <a class="btn btn-ghost btn-icon" asp-controller="Home" asp-action="Details" asp-route-id="@product.Id" title="View">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    </a>
+                                    <a class="btn btn-ghost btn-icon" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" title="Edit">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z"/></svg>
+                                    </a>
+                                    <a class="btn btn-danger-ghost btn-icon" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" title="Delete">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <div class="empty-icon">&#128722;</div>
+        <h3>No products found</h3>
+        <p>Get started by adding your first product.</p>
+        <a class="btn btn-primary" asp-controller="Product" asp-action="Create">Add Product</a>
+    </div>
+}

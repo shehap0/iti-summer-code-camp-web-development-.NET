@@ -1,0 +1,38 @@
+@model CategoryViewModel
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<div class="delete-card reveal">
+    <div class="delete-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+    </div>
+    <h2 class="form-title">Delete this category?</h2>
+    <p class="muted">This action is permanent and cannot be undone.</p>
+
+    <div class="delete-preview">
+        <div class="delete-info">
+            <strong>@Model.Name</strong>
+            <span class="muted">@Model.ProductCount @(Model.ProductCount == 1 ? "product" : "products") in this category</span>
+        </div>
+    </div>
+
+    @if (Model.ProductCount > 0)
+    {
+        <div class="alert alert-warning">
+            <strong>Heads up:</strong> you cannot delete a category that still has products. Move or remove its products first.
+        </div>
+        <div class="form-actions">
+            <a class="btn btn-ghost btn-lg" asp-controller="Category" asp-action="Index">Back to categories</a>
+        </div>
+    }
+    else
+    {
+        <form method="post" asp-controller="Category" asp-action="Delete" asp-route-id="@Model.Id">
+            <div class="form-actions">
+                <button class="btn btn-danger btn-lg" type="submit">Yes, delete it</button>
+                <a class="btn btn-ghost btn-lg" asp-controller="Category" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    }
+</div>
