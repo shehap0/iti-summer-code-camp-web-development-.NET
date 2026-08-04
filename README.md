@@ -195,6 +195,11 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 ### Project — "Shoply" e-commerce app ([MVC/project](./MVC/project))
 > Capstone applying every MVC + EF Core concept: storefront + admin portal, net10.0, EF Core with DI (`AddDbContext` + `appsettings.json`), `Database.EnsureCreated()` at startup.
 
+<p align="center">
+  <video controls width="100%" src="./MVC/project/MVC%20preoject%20demo.mp4"></video>
+  <br><em>Shoply demo fast-video</em>
+</p>
+
 - **Storefront** — `HomeController`: featured products, category filtering + search, product details with related items; dark/light theme toggle persisted in `localStorage`
 - **Admin portal** — `ProductController` / `CategoryController` async CRUD with image upload/removal, `TempData` flash messages, duplicate-name checks, delete blocking while related data exists
 - **Services** — `ImageHandler` validating extensions (.jpg/.jpeg/.png/.webp/.gif) and 5 MB size cap, saving to `wwwroot/images/products/`
@@ -202,4 +207,3 @@ This repository documents my journey through the **ITI Summer Code Camp 2026** i
 - **Layouts & partials** — `_Layout` (storefront) vs `_PortalLayout` (admin sidebar), `_ProductCard`, `_ProductForm`, `_FlashMessage`, `_ThemeToggle`, `asp-append-version` cache busting
 
 ---
-
